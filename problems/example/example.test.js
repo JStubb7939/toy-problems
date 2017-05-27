@@ -1,10 +1,10 @@
 var assert = require('assert');
-var example = require('./example.js');
+var example = require('./example');
 
 describe('Array', function() {
   describe('#indexOf()', function() {
     it('should return -1 when the value is not present', function() {
-      assert.equal(-1, example([1,2,3],4));
+      assert.equal(example([1,2,3],4), -1);
     });
   });
 });
