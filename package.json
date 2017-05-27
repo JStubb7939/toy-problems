@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/JStubb7939/toy-problems/issues"
   },
-  "homepage": "https://github.com/JStubb7939/toy-problems#readme"
+  "homepage": "https://github.com/JStubb7939/toy-problems#readme",
+  "devDependencies": {
+    "chai": "^4.0.0",
+    "mocha": "^3.4.2"
+  }
 }
