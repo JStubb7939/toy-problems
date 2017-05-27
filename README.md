@@ -3,6 +3,5 @@
 # Installation
 Clone and run an npm install for mocha/chai dependencies.
 
-# Use
-Create tests inside test/test.js for your toy problems.
-Add toy problems to index.js or create your own directory but make sure to add them as dependencies to your test file.
+# Recommended Use
+Inside the problems directory, create individual directories for each toy problem. Within the individual directory, create two js files -- one for the toy problem and one for the test. When ready to run the test, just run mocha /path/to/testfile.
