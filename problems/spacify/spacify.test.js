@@ -3,7 +3,7 @@ var spacify = require('./spacify');
 
 describe('Spacify', function() {
     it('should return spacified string', function() {
-        assert.equal("h e l l o", spacify("hello"));
+        assert.equal(spacify("hello"), "h e l l o");
     });
 
     it('should return spacified string', function() {
