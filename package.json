@@ -1,0 +1,22 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "toy problems practice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JStubb7939/toy-problems.git"
+  },
+  "author": "Jordan Stubblefield",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JStubb7939/toy-problems/issues"
+  },
+  "homepage": "https://github.com/JStubb7939/toy-problems#readme"
+}
