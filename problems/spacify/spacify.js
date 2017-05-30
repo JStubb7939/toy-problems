@@ -1,3 +1,5 @@
 /* Given an input string, return that string with spaces between each character */
 
-module.exports = str => str.split('').join(' ');
+const spacify = str => str.split('').join(' ');
+
+module.exports = spacify;
