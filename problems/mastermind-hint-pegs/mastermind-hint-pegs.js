@@ -47,11 +47,17 @@ function getHints(answer, guess) {
 
   if (typeof guess !== 'object' || !Array.isArray(guess) || answer.length !== guess.length) return 'invalid input';
 
+  // set hints black and white to the length; this is the max possible for each
   let length = answer.length;
   let hints = {black: length, white: length};
   let answerDirectory = {};
   let index = [];
 
+  // this iteration will find the number of blacks and indeces where we have a possible white
+  // iterate the answer and if correct guess, decrement white
+  // if incorrect guess, decrement black and add the answer at that index to the directory
+  // the answers in the directory are possible white matches
+  // also push i to the index so that we only check invalid guesses in our next iteration
   for (let i = 0; i < length; i++) {
     if (answer[i] === guess[i]) {
       hints.white--;
@@ -62,6 +68,10 @@ function getHints(answer, guess) {
     };
   }
 
+  // this iteration will find the number of whites
+  // we will iterate the index array so we don't reiterate over correct guesses
+  // if the guess at our indeces in the index array is in the answer directory, then we have a white match and can move on but we need to decrement it in the answer directory because we can't use it twice
+  // if the guess at our indeces in the index array is not in the answer directory, it is an incorrect guess and we need to decrement the white. Also, if we decrement the answerDirectory possibilities to zero, we will delete them and decrement white if they guess it again
   for (let i = 0; i < index.length; i++) {
     if (answerDirectory[guess[index[i]]]) {
       answerDirectory[guess[index[i]]] > 1 ? answerDirectory[guess[index[i]]]-- : delete answerDirectory[guess[index[i]]];
@@ -74,10 +84,3 @@ function getHints(answer, guess) {
 }
 
 module.exports = getHints;
-
-// iterate answer to create directory of possible whites
-   // while iterating, if answer equals guess subtract white, else subtract black
-      // after this iteration we will have number of black and max number of white
-// iterate index
-   // if guess[index] is in directory, subtract one from the directory
-   // if not, subtract one from white
