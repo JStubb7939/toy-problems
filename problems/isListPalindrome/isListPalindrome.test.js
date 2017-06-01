@@ -7,15 +7,20 @@ function ListNode(x) {
   this.next = null;
 }
 
+function addNode(node, x) {
+  if (node.next !== null) addNode(node.next, x);
+  else node.next = new ListNode(x);
+}
+
+function addNodes(node, x) {
+  x.forEach(newNode => addNode(node, newNode));
+}
+
 let palindrome = new ListNode(1);
-palindrome.next = new ListNode(2);
-palindrome.next = new ListNode(1);
+addNodes(palindrome, [2, 1]);
 
 let notPalindrome = new ListNode(1);
-notPalindrome.next = new ListNode(2);
-notPalindrome.next = new ListNode(2);
-notPalindrome.next = new ListNode(3);
-
+addNodes(notPalindrome, [2, 2, 3]);
 
 describe('isListPalindrome', function() {
   it('should return true when list is a palindrome', function() {
@@ -24,5 +29,9 @@ describe('isListPalindrome', function() {
 
   it('should return false when list is not a palindrome', function() {
     expect(isListPalindrome(notPalindrome)).to.equal(false);
+  });
+  
+  it('should return true when list is empty', function() {
+    expect(isListPalindrome([])).to.equal(true);
   });
 });

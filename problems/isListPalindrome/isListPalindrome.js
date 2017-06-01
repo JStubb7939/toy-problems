@@ -32,7 +32,18 @@ function ListNode(x) {
 */
 
 function isListPalindrome(l) {
-// reverse and check against original
+  if (l === null) return true;
+  
+  let list = [];
+  let current = l;
+
+  while (current.next) {
+    list.push(current.value);
+    current = current.next;
+  }
+  list.push(current.value);
+
+  return JSON.stringify(list) === JSON.stringify(list.reverse());
 }
 
 module.exports = isListPalindrome;
