@@ -35,6 +35,17 @@ Guaranteed constraints:
 true if there are two elements from a and b which add up to v, and false otherwise.
 */
 
-function sumOfTwo(a, b, v) {
+const sumOfTwo = (a, b, v) => {
+  if (!v) return a.length === 0 && b.length === 0 ? true : false;
+  if (v && (a.length === 0 || b.length === 0)) return false;
 
+  let i = 0;
+
+  for (; i < a.length; i++) {
+    if (b.includes(v-a[i])) return true;
+  }
+
+  return false;
 }
+
+module.exports = sumOfTwo;
