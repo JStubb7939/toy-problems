@@ -39,10 +39,14 @@ const sumOfTwo = (a, b, v) => {
   if (!v) return a.length === 0 && b.length === 0 ? true : false;
   if (v && (a.length === 0 || b.length === 0)) return false;
 
-  let i = 0;
+  var hash = {};
 
-  for (; i < a.length; i++) {
-    if (b.includes(v-a[i])) return true;
+  for(var i = 0; i < a.length; i++) {
+    hash[a[i]] = true;
+  }
+
+  for (var i = 0; i < b.length; i++) {
+    if (hash[v - b[i]]) return true;
   }
 
   return false;
