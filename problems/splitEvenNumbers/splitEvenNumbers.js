@@ -34,27 +34,32 @@ You must not change the input-array!
 */
 
 function splitAllEvenNumbers(numbers, way) {
-  switch (way) {
-    case 0:
-      return Array.from(numbers, x => {
-        if (x % 2 === 1) return x;
-        else if ((x / 2) % 2 === 1) return [x / 2, x / 2];
-        else return [x / 2 - 1, x / 2 + 1];
-      }).concat();
-    case 1:
-      return Array.from(numbers, x => {
-        if (x % 2 === 1) return x;
-      })
-    case 2:
-      return Array.from(numbers, x => {
-        if (x % 2 === 1) return x;
-      })
-    case 3:
-      return Array.from(numbers, x => {
-        if (x % 2 === 1) return x;
-      })
-    default: return null;
+  let n = '';
+  for (let i of numbers) {
+    if ((i + 2) % 2 === 1) n += i;
+    else {
+      if (way === 0) {
+        (i / 2) % 2 === 1 ? n += String(i/2) + String(i/2) : n += String(i/2-1) + String(i/2+1);
+      }
+      if (way === 1) {
+        n += '1' + String(i-1);
+      }
+      if (way === 2) {
+        if ((i/2) % 2 === 1) n += String(i/2).repeat(2);
+        else {
+          for (let j = (i/2)-1; j > 0; j -= 2) {
+            if (i % j === 0) {
+              n += String(j).repeat(i/j);
+            }
+          }
+        }
+      }
+      if (way === 3) {
+        n += '1'.repeat(i);
+      }
+    }
   }
+  return n.split(',').map(a => Number(a));
 }
 
 module.exports = splitAllEvenNumbers;
