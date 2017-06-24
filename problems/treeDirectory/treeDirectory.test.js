@@ -2,9 +2,12 @@
  Those who completed this before the refactor will still be able to run and pass the test cases
  and those who just want to write it up in one function can do so
 */
+var assert = require('chai').assert;
+var expect = require('chai').expect;
+var treeDirectory = require('./treeDirectory');
 
 function isFunction() {
-  return typeof(createBSTDirectory) === typeof(Function);
+  return typeof(treeDirectory.createBSTDirectory) === typeof(Function);
 }
 
 let tree = {
@@ -277,122 +280,122 @@ let bstResult = {5: [], 3: ['left'], 1: ['left', 'left'], 4: ['left', 'right'], 
 let bstResult2 = {88: [], 44: ['left'], 22: ['left', 'left'], 11: ['left', 'left', 'left'], 5: ['left', 'left', 'left', 'left'], 20: ['left', 'left', 'left', 'right'], 33: ['left', 'left', 'right'], 77: ['left', 'right'], 176: ['right'], 100: ['right', 'left'], 150: ['right', 'left', 'right'], 2113: ['right', 'right'], 2112: ['right', 'right', 'left']};
 let bstResult3 = {5: []};
 
-Test.describe("createTreeDirectory(tree)", () => {
-  var result = createTreeDirectory(tree);
-  Test.it("Should return {5: [], 4: [0], 7: [1], 3: [1, 0], 15: [1, 1]}", () => {
-    Test.assertEquals(!!result['5'], true, "should contain a '5' property");
-    Test.assertEquals(!!result['4'], true, "should contain a '4' property");
-    Test.assertEquals(!!result['7'], true, "should contain a '7' property");
-    Test.assertEquals(!!result['3'], true, "should contain a '3' property");
-    Test.assertEquals(!!result['15'], true, "should contain a '15' property");
-    Test.assertDeepEquals(result, treeResult, "Expected " + treeResult + " but got " + result);
+describe("treeDirectory.createTreeDirectory(tree)", () => {
+  var result = treeDirectory.createTreeDirectory(tree);
+  it("Should return {5: [], 4: [0], 7: [1], 3: [1, 0], 15: [1, 1]}", () => {
+    assert.equal(!!result['5'], true, "should contain a '5' property");
+    assert.equal(!!result['4'], true, "should contain a '4' property");
+    assert.equal(!!result['7'], true, "should contain a '7' property");
+    assert.equal(!!result['3'], true, "should contain a '3' property");
+    assert.equal(!!result['15'], true, "should contain a '15' property");
+    assert.deepEqual(result, treeResult, "Expected " + treeResult + " but got " + result);
   });
 
-  result = createTreeDirectory(tree2);
-  Test.it("Should return {1: [], 20: [0], 300: [1], 4000: [2], 50000: [0, 0], 600000: [1, 0], 7000000: [1, 1], 80000000: [1, 1, 0]}", () => {
-    Test.assertEquals(!!result['1'], true, "should contain a '1' property");
-    Test.assertEquals(!!result['20'], true, "should contain a '20' property");
-    Test.assertEquals(!!result['300'], true, "should contain a '300' property");
-    Test.assertEquals(!!result['4000'], true, "should contain a '4000' property");
-    Test.assertEquals(!!result['50000'], true, "should contain a '50000' property");
-    Test.assertEquals(!!result['600000'], true, "should contain a '600000' property");
-    Test.assertEquals(!!result['7000000'], true, "should contain a '7000000' property");
-    Test.assertEquals(!!result['80000000'], true, "should contain a '80000000' property");
-    Test.assertDeepEquals(result, treeResult2, "Expected " + treeResult2 + " but got " + result);
+  result = treeDirectory.createTreeDirectory(tree2);
+  it("Should return {1: [], 20: [0], 300: [1], 4000: [2], 50000: [0, 0], 600000: [1, 0], 7000000: [1, 1], 80000000: [1, 1, 0]}", () => {
+    assert.equal(!!result['1'], true, "should contain a '1' property");
+    assert.equal(!!result['20'], true, "should contain a '20' property");
+    assert.equal(!!result['300'], true, "should contain a '300' property");
+    assert.equal(!!result['4000'], true, "should contain a '4000' property");
+    assert.equal(!!result['50000'], true, "should contain a '50000' property");
+    assert.equal(!!result['600000'], true, "should contain a '600000' property");
+    assert.equal(!!result['7000000'], true, "should contain a '7000000' property");
+    assert.equal(!!result['80000000'], true, "should contain a '80000000' property");
+    assert.deepEqual(result, treeResult2, "Expected " + treeResult2 + " but got " + result);
   });
 
-  result = createTreeDirectory(tree3);
-  Test.it("Should return {1: []}", () => {
-    Test.assertEquals(!!result['1'], true, "should contain a '1' property");
-    Test.assertDeepEquals(result, treeResult3, "Expected " + treeResult3 + " but got " + result);
-  });
-});
-
-Test.describe("createBSTDirectory(bst)", function() {
-  var result = isFunction() ? createBSTDirectory(bst) : createTreeDirectory(bst);
-  Test.it("Should return {5: [], 3: ['left'], 1: ['left', 'left'], 4: ['left', 'right'], 7: ['right'], 6: ['right', 'left'], 9: ['right', 'right']}", function() {
-    Test.assertEquals(!!result['5'], true, "should contain a '5' property");
-    Test.assertEquals(!!result['3'], true, "should contain a '3' property");
-    Test.assertEquals(!!result['1'], true, "should contain a '1' property");
-    Test.assertEquals(!!result['4'], true, "should contain a '4' property");
-    Test.assertEquals(!!result['7'], true, "should contain a '7' property");
-    Test.assertEquals(!!result['6'], true, "should contain a '6' property");
-    Test.assertEquals(!!result['9'], true, "should contain a '9' property");
-    Test.assertDeepEquals(result, bstResult, "Expected " + bstResult + " but got " + result);
-  });
-
-  result = isFunction() ? createBSTDirectory(bst2) : createTreeDirectory(bst2);
-  Test.it("Should return {88: [], 44: ['left'], 22: ['left', 'left'], 11: ['left', 'left', 'left'], 5: ['left', 'left', 'left', 'left'], 20: ['left', 'left', 'left', 'right'], 33: ['left', 'left', 'right'], 77: ['left', 'right'], 176: ['right'], 100: ['right', 'left'], 150: ['right', 'left', 'right'], 2113: ['right', 'right'], 2112: ['right', 'right', 'left']}", function() {
-    Test.assertEquals(!!result['88'], true, "should contain a '88' property");
-    Test.assertEquals(!!result['44'], true, "should contain a '44' property");
-    Test.assertEquals(!!result['22'], true, "should contain a '22' property");
-    Test.assertEquals(!!result['11'], true, "should contain a '11' property");
-    Test.assertEquals(!!result['5'], true, "should contain a '5' property");
-    Test.assertEquals(!!result['20'], true, "should contain a '20' property");
-    Test.assertEquals(!!result['33'], true, "should contain a '33' property");
-    Test.assertEquals(!!result['77'], true, "should contain a '77' property");
-    Test.assertEquals(!!result['176'], true, "should contain a '176' property");
-    Test.assertEquals(!!result['100'], true, "should contain a '100' property");
-    Test.assertEquals(!!result['150'], true, "should contain a '150' property");
-    Test.assertEquals(!!result['2113'], true, "should contain a '2113' property");
-    Test.assertEquals(!!result['2112'], true, "should contain a '2112' property");
-    Test.assertDeepEquals(result, bstResult2, "Expected " + bstResult2 + " but got " + result);
-  });
-
-  result = isFunction() ? createBSTDirectory(bst3) : createTreeDirectory(bst3);
-  Test.it("Should return {5: []}", function() {
-    Test.assertEquals(!!result['5'], true, "should contain a '5' property");
-    Test.assertDeepEquals(result, bstResult3, "Expected " + bstResult3 + " but got " + result);
+  result = treeDirectory.createTreeDirectory(tree3);
+  it("Should return {1: []}", () => {
+    assert.equal(!!result['1'], true, "should contain a '1' property");
+    assert.deepEqual(result, treeResult3, "Expected " + treeResult3 + " but got " + result);
   });
 });
 
+describe("treeDirectory.createBSTDirectory(bst)", function() {
+  var result = isFunction() ? treeDirectory.createBSTDirectory(bst) : treeDirectory.createTreeDirectory(bst);
+  it("Should return {5: [], 3: ['left'], 1: ['left', 'left'], 4: ['left', 'right'], 7: ['right'], 6: ['right', 'left'], 9: ['right', 'right']}", function() {
+    assert.equal(!!result['5'], true, "should contain a '5' property");
+    assert.equal(!!result['3'], true, "should contain a '3' property");
+    assert.equal(!!result['1'], true, "should contain a '1' property");
+    assert.equal(!!result['4'], true, "should contain a '4' property");
+    assert.equal(!!result['7'], true, "should contain a '7' property");
+    assert.equal(!!result['6'], true, "should contain a '6' property");
+    assert.equal(!!result['9'], true, "should contain a '9' property");
+    assert.deepEqual(result, bstResult, "Expected " + bstResult + " but got " + result);
+  });
 
-Test.describe("Random tree tests", function() {
+  result = isFunction() ? treeDirectory.createBSTDirectory(bst2) : treeDirectory.createTreeDirectory(bst2);
+  it("Should return {88: [], 44: ['left'], 22: ['left', 'left'], 11: ['left', 'left', 'left'], 5: ['left', 'left', 'left', 'left'], 20: ['left', 'left', 'left', 'right'], 33: ['left', 'left', 'right'], 77: ['left', 'right'], 176: ['right'], 100: ['right', 'left'], 150: ['right', 'left', 'right'], 2113: ['right', 'right'], 2112: ['right', 'right', 'left']}", function() {
+    assert.equal(!!result['88'], true, "should contain a '88' property");
+    assert.equal(!!result['44'], true, "should contain a '44' property");
+    assert.equal(!!result['22'], true, "should contain a '22' property");
+    assert.equal(!!result['11'], true, "should contain a '11' property");
+    assert.equal(!!result['5'], true, "should contain a '5' property");
+    assert.equal(!!result['20'], true, "should contain a '20' property");
+    assert.equal(!!result['33'], true, "should contain a '33' property");
+    assert.equal(!!result['77'], true, "should contain a '77' property");
+    assert.equal(!!result['176'], true, "should contain a '176' property");
+    assert.equal(!!result['100'], true, "should contain a '100' property");
+    assert.equal(!!result['150'], true, "should contain a '150' property");
+    assert.equal(!!result['2113'], true, "should contain a '2113' property");
+    assert.equal(!!result['2112'], true, "should contain a '2112' property");
+    assert.deepEqual(result, bstResult2, "Expected " + bstResult2 + " but got " + result);
+  });
+
+  result = isFunction() ? treeDirectory.createBSTDirectory(bst3) : treeDirectory.createTreeDirectory(bst3);
+  it("Should return {5: []}", function() {
+    assert.equal(!!result['5'], true, "should contain a '5' property");
+    assert.deepEqual(result, bstResult3, "Expected " + bstResult3 + " but got " + result);
+  });
+});
+
+
+describe("Random tree test", function() {
   let randomTree, expected, actual;
   before(() => {
     randomTree = generateRandomTree();
     expected = treeSolution(randomTree);
-    actual = createTreeDirectory(randomTree);
+    actual = treeDirectory.createTreeDirectory(randomTree);
   });
 
-  Test.it("Should pass random tree test 1/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random tree test 1/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random tree test 2/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random tree test 2/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random tree test 3/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random tree test 3/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random tree test 4/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random tree test 4/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random tree test 5/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random tree test 5/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
 });
 
-Test.describe("Random BST tests", function() {
+describe("Random BST test", function() {
   let randomBST, expected, actual;
   before(() => {
     randomBST = generateRandomBST();
     expected = bstSolution(randomBST);
-    actual = isFunction() ? createBSTDirectory(randomBST) : createTreeDirectory(randomBST);
+    actual = isFunction() ? treeDirectory.createBSTDirectory(randomBST) : treeDirectory.createTreeDirectory(randomBST);
   });
 
-  Test.it("Should pass random BST test 1/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random BST test 1/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random BST test 2/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random BST test 2/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random BST test 3/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random BST test 3/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random BST test 4/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random BST test 4/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
-  Test.it("Should pass random BST test 5/5", function() {
-    Test.assertDeepEquals(actual, expected, "Expected " + actual + " to equal " + expected);
+  it("Should pass random BST test 5/5", function() {
+    assert.deepEqual(actual, expected, "Expected " + actual + " to equal " + expected);
   });
 });

@@ -138,3 +138,8 @@ function createBSTDirectory(BST) {
 
   return directory;
 }
+
+module.exports = {
+  createTreeDirectory: createTreeDirectory,
+  createBSTDirectory: createBSTDirectory
+};
